@@ -104,7 +104,6 @@ function GraduateTracerStudy() {
       const response = await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
       

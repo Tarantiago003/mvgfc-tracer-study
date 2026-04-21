@@ -45,146 +45,14 @@ package.json
 public/banner.png
 public/index.html
 redme.md
-src/app.js
+src/App.js
 src/index.js
 </directory_structure>
 
 <files>
 This section contains the contents of the repository's files.
 
-<file path=".gitignore">
-# Dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# Testing
-/coverage
-
-# Production
-/build
-
-# Misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-</file>
-
-<file path="public/index.html">
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2d5f3f" />
-    <meta
-      name="description"
-      content="MVGFC Graduate Tracer Study - Batch 2023-2024"
-    />
-    <title>MVGFC Graduate Tracer Study</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-          sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
-</html>
-</file>
-
-<file path="redme.md">
-# MVGFC Graduate Tracer Study System
-
-Graduate Tracer Study for Manuel V. Gallego Foundation Colleges - Batch 2023-2024
-
-## Features
-- Multi-step survey wizard
-- Progress auto-saving
-- Conditional logic based on responses
-- Google Sheets integration
-- File uploads to Google Drive
-
-## Setup
-1. Install dependencies: `npm install`
-2. Start development server: `npm start`
-3. Deploy to GitHub Pages: `npm run deploy`
-
-## Technologies
-- React 18
-- Lucide React Icons
-- Google Apps Script Backend
-- Google Sheets Database
-</file>
-
-<file path="src/index.js">
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-</file>
-
-<file path="package.json">
-{
-  "name": "mvgfc-tracer-study",
-  "version": "1.0.0",
-  "description": "MVGFC Graduate Tracer Study System - Batch 2023-2024",
-  "private": true,
-  "homepage": "https://Tarantiago003.github.io/mvgfc-tracer-study",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.263.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "devDependencies": {
-    "react-scripts": "5.0.1",
-    "gh-pages": "^5.0.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
-}
-</file>
-
-<file path="src/app.js">
+<file path="src/App.js">
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Save, Send, CheckCircle, Upload, X } from 'lucide-react';
 
@@ -195,7 +63,7 @@ const GOLD = '#ffd700';
 // Your Google Apps Script Web App URL - REPLACE THIS
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9pRm_tRt9H2ZkTAl39FHRB6WnexoOCEBup4WADS-LXISwZm4w3u_eCyn-LWWYI66WVA/exec';
 
-export default function GraduateTracerStudy() {
+function GraduateTracerStudy() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [savedProgress, setSavedProgress] = useState(false);
@@ -2046,6 +1914,143 @@ function RatingSection({ title, items, prefix, formData, updateField, scale }) {
     </div>
   );
 }
+export default GraduateTracerStudy;
+</file>
+
+<file path=".gitignore">
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+</file>
+
+<file path="redme.md">
+# MVGFC Graduate Tracer Study System
+
+Graduate Tracer Study for Manuel V. Gallego Foundation Colleges - Batch 2023-2024
+
+## Features
+- Multi-step survey wizard
+- Progress auto-saving
+- Conditional logic based on responses
+- Google Sheets integration
+- File uploads to Google Drive
+
+## Setup
+1. Install dependencies: `npm install`
+2. Start development server: `npm start`
+3. Deploy to GitHub Pages: `npm run deploy`
+
+## Technologies
+- React 18
+- Lucide React Icons
+- Google Apps Script Backend
+- Google Sheets Database
+</file>
+
+<file path="src/index.js">
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+</file>
+
+<file path="package.json">
+{
+  "name": "mvgfc-tracer-study",
+  "version": "1.0.0",
+  "description": "MVGFC Graduate Tracer Study System - Batch 2023-2024",
+  "private": true,
+  "homepage": "https://Tarantiago003.github.io/mvgfc-tracer-study",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.263.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "gh-pages": "^5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+</file>
+
+<file path="public/index.html">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2d5f3f" />
+    <meta
+      name="description"
+      content="MVGFC Graduate Tracer Study - Batch 2023-2024"
+    />
+    <title>MVGFC Graduate Tracer Study</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
 </file>
 
 </files>
