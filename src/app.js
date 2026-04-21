@@ -8,7 +8,7 @@ const GOLD = '#ffd700';
 // Your Google Apps Script Web App URL - REPLACE THIS
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby9pRm_tRt9H2ZkTAl39FHRB6WnexoOCEBup4WADS-LXISwZm4w3u_eCyn-LWWYI66WVA/exec';
 
-export default function GraduateTracerStudy() {
+function GraduateTracerStudy() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [savedProgress, setSavedProgress] = useState(false);
@@ -1859,3 +1859,4 @@ function RatingSection({ title, items, prefix, formData, updateField, scale }) {
     </div>
   );
 }
+export default GraduateTracerStudy;
