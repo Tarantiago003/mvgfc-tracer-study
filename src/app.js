@@ -69,7 +69,19 @@ export default function GraduateTracerStudy() {
   };
 
   const validateStep = () => {
-    // Basic validation - expand as needed
+    // Step 0: Welcome & Consent validation
+    if (currentStep === 0) {
+      if (!formData.email) {
+        alert('Please enter your email address');
+        return false;
+      }
+      if (!formData.dataPrivacyConsent) {
+        alert('You must agree to the Data Privacy Act consent to proceed');
+        return false;
+      }
+    }
+    
+    // Add more validation for other steps as needed
     return true;
   };
 
@@ -135,12 +147,12 @@ export default function GraduateTracerStudy() {
       {/* Header Banner */}
       <div className="w-full relative overflow-hidden">
         <img 
-          src={`${process.env.PUBLIC_URL}/banner.png`}
-          alt="MVGFC Graduate Tracer Study Banner"
-          className="w-full h-auto object-cover"
-          style={{ maxHeight: '250px', objectFit: 'cover' }}
+            src="/mvgfc-tracer-study/banner.png"
+            alt="MVGFC Graduate Tracer Study"
+            className="w-full h-auto"
+            style={{ maxHeight: '250px', objectFit: 'cover' }}
         />
-      </div>
+        </div>
 
       {/* Progress Indicator */}
       <div className="bg-white shadow-md">
@@ -234,7 +246,7 @@ export default function GraduateTracerStudy() {
 
               <div className="bg-blue-50 p-6 rounded-lg border-2 border-blue-200">
                 <h3 className="font-bold text-lg mb-3 text-blue-900">
-                  🔒 Data Privacy Act of 2012 (RA 10173)
+                  🔒 Data Privacy Act of 2012 (RA 10173) *
                 </h3>
                 <p className="text-sm text-gray-700 mb-4 leading-relaxed">
                   In accordance with Republic Act No. 10173, also known as the Data Privacy Act of 2012, 
@@ -242,18 +254,27 @@ export default function GraduateTracerStudy() {
                   and use your personal information (such as your full name, email address, and other relevant 
                   details) for school records and other documents related to the Graduate Tracer Study?
                 </p>
-                <label className="flex items-center space-x-3 cursor-pointer">
+                <label className={`flex items-start space-x-3 cursor-pointer p-4 rounded-lg border-2 transition-all ${
+                  formData.dataPrivacyConsent 
+                    ? 'bg-green-50 border-green-500' 
+                    : 'bg-white border-gray-300 hover:border-blue-400'
+                }`}>
                   <input
                     type="checkbox"
                     required
-                    className="w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                    className="w-5 h-5 text-green-600 rounded focus:ring-green-500 mt-0.5"
                     checked={formData.dataPrivacyConsent || false}
                     onChange={(e) => updateField('dataPrivacyConsent', e.target.checked)}
                   />
                   <span className="font-semibold text-gray-800">
-                    I agree and give my consent
+                    I agree and give my consent to the collection and use of my personal information
                   </span>
                 </label>
+                {!formData.dataPrivacyConsent && (
+                  <p className="text-sm text-red-600 mt-2 font-medium">
+                    * You must agree to proceed with the survey
+                  </p>
+                )}
               </div>
 
               <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
