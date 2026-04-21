@@ -105,7 +105,8 @@ function GraduateTracerStudy() {
         method: 'POST',
         mode: 'no-cors',
         body: JSON.stringify(formData)
-      });
+        });
+
       
       setSubmitted(true);
       localStorage.removeItem('mvgfc_tracer_progress');
