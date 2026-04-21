@@ -135,7 +135,7 @@ export default function GraduateTracerStudy() {
       {/* Header Banner */}
       <div className="w-full relative overflow-hidden">
         <img 
-          src={`${process.env.PUBLIC_URL}/banner.jpg`}
+          src={`${process.env.PUBLIC_URL}/banner.png`}
           alt="MVGFC Graduate Tracer Study Banner"
           className="w-full h-auto object-cover"
           style={{ maxHeight: '250px', objectFit: 'cover' }}
