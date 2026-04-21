@@ -111,10 +111,10 @@ export default function GraduateTracerStudy() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl p-12 max-w-2xl text-center">
           <CheckCircle size={80} className="mx-auto mb-6 text-green-600" />
-          <h1 className="text-4xl font-bold mb-4" style={{ color: MVGFC_GREEN }}>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: MVGFC_GREEN }}>
             Thank You!
           </h1>
-          <p className="text-xl text-gray-700 mb-6">
+          <p className="text-lg sm:text-xl text-gray-700 mb-6">
             Your Graduate Tracer Study response has been successfully submitted.
           </p>
           <p className="text-gray-600">
@@ -133,26 +133,31 @@ export default function GraduateTracerStudy() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       {/* Header Banner */}
-      <div className="w-full h-48 bg-gradient-to-r from-green-800 to-green-600 flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-32 h-32 bg-yellow-400 rounded-full -translate-x-16 -translate-y-16"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 bg-yellow-400 rounded-full translate-x-20 translate-y-20"></div>
-        </div>
-        <div className="text-center z-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-            GRADUATE TRACER STUDY
-          </h1>
-          <p className="text-xl text-yellow-200">Batch 2023-2024</p>
-          <p className="text-sm text-green-100 mt-2">Manuel V. Gallego Foundation Colleges, Inc.</p>
-        </div>
+      <div className="w-full relative overflow-hidden">
+        <img 
+          src={`${process.env.PUBLIC_URL}/banner.jpg`}
+          alt="MVGFC Graduate Tracer Study Banner"
+          className="w-full h-auto object-cover"
+          style={{ maxHeight: '250px', objectFit: 'cover' }}
+        />
       </div>
 
       {/* Progress Indicator */}
       <div className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+          {/* Mobile: Show current step */}
+          <div className="block md:hidden mb-4">
+            <div className="text-center">
+              <div className="text-2xl mb-2">{steps[currentStep].icon}</div>
+              <p className="font-bold text-green-700">{steps[currentStep].title}</p>
+              <p className="text-sm text-gray-500">Step {currentStep + 1} of {steps.length}</p>
+            </div>
+          </div>
+
+          {/* Desktop: Show all steps */}
+          <div className="hidden md:flex items-center justify-between mb-4">
             {steps.map((step, idx) => (
-              <div key={idx} className="flex flex-col items-center flex-1">
+              <div key={idx} className="flex flex-col items-center flex-1 relative">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
                   idx === currentStep ? 'bg-green-600 text-white scale-110' :
                   idx < currentStep ? 'bg-green-500 text-white' :
@@ -160,19 +165,21 @@ export default function GraduateTracerStudy() {
                 }`}>
                   {idx < currentStep ? '✓' : step.icon}
                 </div>
-                <div className={`text-xs mt-2 text-center hidden md:block ${
+                <div className={`text-xs mt-2 text-center ${
                   idx === currentStep ? 'font-bold text-green-700' : 'text-gray-500'
                 }`}>
                   {step.title}
                 </div>
                 {idx < steps.length - 1 && (
-                  <div className={`absolute h-1 w-full top-5 left-1/2 -z-10 ${
+                  <div className={`absolute h-1 top-5 left-1/2 -z-10 ${
                     idx < currentStep ? 'bg-green-500' : 'bg-gray-200'
                   }`} style={{ width: 'calc(100% / 9)' }} />
                 )}
               </div>
             ))}
           </div>
+          
+          {/* Progress Bar */}
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-green-600 h-2 rounded-full transition-all duration-500"
@@ -183,8 +190,8 @@ export default function GraduateTracerStudy() {
       </div>
 
       {/* Form Content */}
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
           {savedProgress && currentStep === 0 && (
             <div className="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
               <div className="flex items-center">
@@ -201,7 +208,7 @@ export default function GraduateTracerStudy() {
           {currentStep === 0 && (
             <div className="space-y-6">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4" style={{ color: MVGFC_GREEN }}>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: MVGFC_GREEN }}>
                   Welcome, Dear Graduate! 🎓
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
@@ -260,7 +267,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 1: PERSONAL INFORMATION */}
           {currentStep === 1 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 👤 Personal Information
               </h2>
 
@@ -277,7 +284,7 @@ export default function GraduateTracerStudy() {
 
               <div>
                 <label className="block font-semibold mb-2">Gender *</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                   {['Male', 'Female', 'With Diverse SOGIE', 'Prefer not to say'].map(option => (
                     <label key={option} className="flex items-center space-x-2 p-3 border-2 rounded-lg cursor-pointer hover:bg-green-50 transition-all"
                       style={{
@@ -301,7 +308,7 @@ export default function GraduateTracerStudy() {
 
               <div>
                 <label className="block font-semibold mb-2">Age (in years) *</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {['Below 20', '20-24', '25-29', '30-34', '35-39', '40 and above'].map(option => (
                     <label key={option} className="flex items-center space-x-2 p-3 border-2 rounded-lg cursor-pointer hover:bg-green-50 transition-all"
                       style={{
@@ -399,7 +406,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 2: PROGRAM BACKGROUND */}
           {currentStep === 2 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 🎓 Program Background
               </h2>
 
@@ -679,7 +686,7 @@ export default function GraduateTracerStudy() {
 
               <div>
                 <label className="block font-semibold mb-3">Social Media or Networking Platforms Used * (Select all that apply)</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {['Facebook', 'TikTok', 'Twitter/X', 'LinkedIn', 'Instagram', 'YouTube', 'Others'].map(platform => (
                     <label key={platform} className="flex items-center space-x-2 p-3 border-2 rounded-lg cursor-pointer hover:bg-green-50 transition-all"
                       style={{
@@ -710,7 +717,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 3: STUDENT EXPERIENCE (Ratings) */}
           {currentStep === 3 && (
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 ⭐ Student Experience
               </h2>
               
@@ -825,13 +832,13 @@ export default function GraduateTracerStudy() {
           {/* STEP 4: EMPLOYMENT STATUS */}
           {currentStep === 4 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 💼 Employment Status
               </h2>
 
               <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg border-2 border-green-200">
                 <label className="block font-semibold mb-3 text-lg">Present Employment Status *</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     'Employed (full-time)',
                     'Employed (part-time)',
@@ -877,7 +884,7 @@ export default function GraduateTracerStudy() {
             <div className="space-y-6">
               {formData.employmentStatus?.startsWith('Employed') || formData.employmentStatus === 'Self-employed' ? (
                 <>
-                  <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                     📊 Employment Details
                   </h2>
 
@@ -1314,7 +1321,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 6: SKILLS & COMPETENCIES */}
           {currentStep === 6 && (
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 🎯 Skills & Competencies
               </h2>
 
@@ -1398,7 +1405,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 7: FURTHER EDUCATION */}
           {currentStep === 7 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 📚 Further Education & Training
               </h2>
 
@@ -1541,7 +1548,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 8: COMMUNITY CONTRIBUTION */}
           {currentStep === 8 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 🤝 Contribution to Society & Community
               </h2>
 
@@ -1571,7 +1578,7 @@ export default function GraduateTracerStudy() {
           {/* STEP 9: ALUMNI ID */}
           {currentStep === 9 && (
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6" style={{ color: MVGFC_GREEN }}>
                 💳 MVGFC Alumni ID Information
               </h2>
 
@@ -1735,11 +1742,11 @@ export default function GraduateTracerStudy() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mt-8 pt-6 border-t-2 border-gray-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 mt-8 pt-6 border-t-2 border-gray-200">
             {currentStep > 0 && (
               <button
                 onClick={prevStep}
-                className="flex items-center space-x-2 px-6 py-3 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all font-semibold"
+                className="w-full sm:w-auto flex items-center justify-center space-x-2 px-6 py-3 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all font-semibold"
               >
                 <ChevronLeft size={20} />
                 <span>Previous</span>
@@ -1749,7 +1756,7 @@ export default function GraduateTracerStudy() {
             {currentStep < steps.length - 1 ? (
               <button
                 onClick={nextStep}
-                className="ml-auto flex items-center space-x-2 px-6 py-3 rounded-lg text-white font-semibold hover:opacity-90 transition-all"
+                className="w-full sm:w-auto sm:ml-auto flex items-center justify-center space-x-2 px-6 py-3 rounded-lg text-white font-semibold hover:opacity-90 transition-all"
                 style={{ backgroundColor: MVGFC_GREEN }}
               >
                 <span>Next</span>
@@ -1759,7 +1766,7 @@ export default function GraduateTracerStudy() {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="ml-auto flex items-center space-x-2 px-8 py-4 rounded-lg text-white font-bold text-lg hover:opacity-90 transition-all disabled:opacity-50"
+                className="w-full sm:w-auto sm:ml-auto flex items-center justify-center space-x-2 px-8 py-4 rounded-lg text-white font-bold text-lg hover:opacity-90 transition-all disabled:opacity-50"
                 style={{ backgroundColor: MVGFC_GREEN }}
               >
                 {isSubmitting ? (
@@ -1801,7 +1808,7 @@ function RatingSection({ title, items, prefix, formData, updateField, scale }) {
         {items.map((item, idx) => (
           <div key={idx} className="bg-white p-4 rounded-lg border border-gray-200">
             <p className="font-medium mb-3 text-sm">{item}</p>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {scale.map((option, optIdx) => {
                 const value = (optIdx + 1).toString();
                 const fieldName = `${prefix}_${idx}`;

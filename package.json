@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "MVGFC Graduate Tracer Study System - Batch 2023-2024",
   "private": true,
-  "homepage": "https://tarantiago003.github.io/tracer-study",
+  "homepage": "https://Tarantiago003.github.io/mvgfc-tracer-study",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
